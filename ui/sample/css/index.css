@@ -1,0 +1,57 @@
+ /*div#log-reg*/
+ body>div {
+
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+
+}
+
+#log-reg>button {
+
+    width: 20%;
+    height: 10%;
+
+    margin: 5%;
+
+    border: none;
+    border-radius: 5em;
+
+}
+
+#hide {
+    display: none;
+}
+
+div>#goback {
+
+    display: none;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+}
+
+div>#log {
+
+    display: none;
+
+}
+
+div>#reg {
+
+    display: none;
+
+}
+
+#log-reg>button:hover {
+
+    color: white;
+
+    background-color: #222222;
+
+}

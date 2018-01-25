@@ -1,0 +1,49 @@
+<head>
+    <link href="css/index.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="log-reg">
+        <button onclick="showLogin()">Login</button>
+        <button onclick="showReg()">Register</button>
+    </div>
+    <div id="hide">
+        <div id="goback">
+            <button onclick="reset()">Go Back</button>
+        </div>
+        <div id="log">
+            <form action="/login" method="post">
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" required="required"/>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" required="required"/>
+                </div>
+                <div><input type="submit" value="login"></div>
+            </form>
+        </div>
+        <div id="reg">
+            <form action="/register" method="post">
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" required="required"/>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" required="required"/>
+                </div>
+                <div>
+                    <label for="con-password">Confirm Password:</label>
+                    <input type="password" name="con-password" required="required"/>
+                </div>
+                <div><input type="submit" value="register"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="js/login.js"></script>
+
+</body>

@@ -1,0 +1,13 @@
+# #! /usr/bin/sh
+
+/usr/local/bin/docker-compose build
+
+/usr/local/bin/docker-machine create --driver virtualbox se-dev
+
+/usr/local/bin/docker-machine start se-dev
+
+eval "$(docker-machine env se-dev)"
+
+/usr/local/bin/docker-compose up -d
+
+echo "$(docker-machine ip se-dev)"
