@@ -1,3 +1,5 @@
+<img src="https://travis-ci.org/williamstrong/Zophar.svg?branch=master"/>
+
 <b>Requirements:</b>
 <ul>
 <li>Docker</li>
