@@ -1,4 +1,4 @@
-<img src="https://travis-ci.org/williamstrong/Zophar.svg?branch=master"/>
+[![Build Status](https://travis-ci.org/williamstrong/Zophar.svg?branch=master)](https://travis-ci.org/williamstrong/Zophar)
 
 <b>Requirements:</b>
 <ul>
