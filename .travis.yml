@@ -3,7 +3,7 @@ python:
   - "3.6"
 # command to install dependencies
 install:
-  - pip install -r django/requirements.txt
+  - pip install -r django_project/requirements.txt
 
 # database configuration
 services:
@@ -15,4 +15,4 @@ before_script:
 # command to run tests
 script:
   # Django test
-  - python django/manage.py test
+  - python django_project/manage.py test

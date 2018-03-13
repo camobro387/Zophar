@@ -1,0 +1,10 @@
+#! /usr/bin/zsh
+#
+
+# Add to $ZDOTDIR/.zlogin
+echo '(cd /home/dev/sf_zophar; docker-compose up -d)' >> /home/dev/.zlogin
+
+# Add to $ZDOTDIR/.zlogout
+echo '(cd /home/dev/sf_zophar; docker-compose down)' >> /home/dev/.zlogout
+
+git config credential.helper store

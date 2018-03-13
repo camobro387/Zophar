@@ -1,0 +1,6 @@
+#! /bin/zsh
+#
+# Ensure that the services are down
+docker-compose down
+# Start services
+docker-compose up
