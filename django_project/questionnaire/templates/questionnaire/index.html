@@ -1,0 +1,11 @@
+<style>
+    label {display: block}
+    ul {list-style-type: none}
+</style>
+<form action="/questionnaire/submit/" method="post">
+    {% csrf_token %}
+    {{ form }}
+
+    <input type="submit" value="Submit" />
+{# This is a button for testing :) Mark: do not use this  <a href="/login/logout/">Logout</a>#}
+</form>
