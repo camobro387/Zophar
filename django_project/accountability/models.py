@@ -1,13 +1,13 @@
 from django.db import models
-from ..login.models import User
+# from .login.models import User
 
 # Create your models here.
 
 
-class ChuchCheckIn(models.Model):
+class ChurchCheckIn(models.Model):
     '''
     Contains all of the church check in data.
     '''
-    checkin = models.BooleanField()
+    check_in = models.BooleanField()
     date = models.DateTimeField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
