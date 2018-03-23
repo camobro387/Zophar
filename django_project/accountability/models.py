@@ -1,5 +1,5 @@
 from django.db import models
-# from .login.models import User
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -10,4 +10,4 @@ class ChurchCheckIn(models.Model):
     '''
     check_in = models.BooleanField()
     date = models.DateTimeField()
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
