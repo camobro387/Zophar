@@ -4,9 +4,9 @@
 <!doctype html>
 <html class="no-js" lang="">
     <head>
+        <title>{% block title %}Pocket Pastors{% endblock %}</title>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Title Booiii</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,6 +16,11 @@
 
         <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'css/toggle_style.css' %}">
+        <!-- Courtesy of fontawesome-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
     </head>
     <body>
         <!--[if lte IE 9]>
@@ -24,11 +29,9 @@
 
 
 
-        <div class="main">
-            {% block content %}
+        {% block content %}
 
-            {% endblock content %}
-        </div>
+        {% endblock content %}
 
         <!-- Add your site or application content here -->
 
