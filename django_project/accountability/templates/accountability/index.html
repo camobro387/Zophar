@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block title %}Accountability{% endblock %}
+{% block content %}
+
+<div class = "container">
+
+    <div class = "top_bar">
+        <p class = "logo"> <i class="fas fa-home"></i> &nbsp Accountability</p>
+    </div>
+
+    <div class = "acctsection">
+        <h3>Bible Reading</h3>
+        <hr>
+
+        <p>Keep track of your Bible reading with the press of a button</p>
+        <form action="{% url 'read' %}" method="post" novalidate>
+            <div class="sliderform">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                <label class="switch">
+                    {{ form.slider }}
+                    <span class="slider round"></span>
+                </label>
+                <button type="submit">Check In</button>
+            </div>
+        </form>
+
+{#        <form action="{% url 'checkin' %}">#}
+{#            <label class="switch">#}
+{#                <input type="checkbox">#}
+{#                <span class="slider round"></span>#}
+{#            </label>#}
+{#            <button type="submit">Check in</button>#}
+{#        </form>#}
+
+
+        <br><br>
+        <p class="test"><i class="fas fa-envelope"></i> <strong>Email</strong></p>
+        <p class="test">{{ reading_email }}</p>
+
+
+        <br>
+        <p class="test"><i class="fas fa-clock"></i> <strong>Time Period</strong></p>
+        <p class="test">{{ reading_goal }} hrs per week</p>
+
+
+    </div>
+
+
+
+    <div class = "acctsection">
+        <h3>Church</h3>
+        <hr>
+        <p>Let your friend know you're at church simply by visiting our site once during the sermon</p>
+
+        <form action="{% url 'church' %}" method="post" novalidate>
+            <div class="sliderform">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                <label class="switch">
+                    {{ form.slider }}
+                    <span class="slider round"></span>
+                </label>
+                <button type="submit">Check In</button>
+            </div>
+        </form>
+
+
+
+        <br><br>
+        <p class="test"><i class="fas fa-envelope"></i> <strong>Email</strong></p>
+        <p class="test">{{ church_email }}</p>
+
+        <br>
+        <p class="test"><i class="fas fa-clock"></i> <strong>Time Period</strong></p>
+        <p class="test">Su 8:00am-10:00am</p>
+
+
+        <br>
+        <p class="test"><i class="fas fa-map-marker-alt"></i> <strong>GPS</strong></p>
+        <p class="test">15144 Leffingwell Rd, La Mirada, CA</p>
+
+
+    </div>
+
+
+
+    <div class = "acctsection">
+        <h3>Serve</h3>
+        <hr>
+        <p>Inform your friend of your faithful serving simply by visiting our site once during the event</p>
+
+    <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+    </label>
+
+
+        <br><br>
+        <p class="test"><i class="fas fa-envelope"></i> <strong>Email</strong></p>
+        <p class="test">example@email.com</p>
+
+
+        <br>
+        <p class="test"><i class="fas fa-clock"></i> <strong>Time Period</strong></p>
+        <p class="test">M, W, F 6:00pm-8:00pm</p>
+
+
+        <br>
+        <p class="test"><i class="fas fa-map-marker-alt"></i> <strong>GPS</strong></p>
+        <p class="test">15144 Leffingwell Rd, La Mirada, CA</p>
+
+    </div>
+
+</div>
+
+{% endblock %}
