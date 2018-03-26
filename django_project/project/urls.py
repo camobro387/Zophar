@@ -21,7 +21,7 @@ urlpatterns = [
     path('login/', include('login.urls')),
     path('accountability/', include('accountability.urls')),
     path('encouragement/', include('encouragement.urls')),
-    path('main_page/', include('main_page.urls')),
+    path('', include('main_page.urls')),
     path('questionnaire/', include('questionnaire.urls')),
     path('settings/', include('settings.urls')),
     path('small_group/', include('small_group.urls')),
