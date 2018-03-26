@@ -2,7 +2,7 @@
 
 body
 {
- background-color: #cccccc;
+ background-color: #e0e0e0;
  display:block;
  text-align:center;
  font-family: Verdana, georgia;
@@ -38,7 +38,7 @@ margin: 5px;
 	margin: 0 0 10px 0;
 	padding-left:20px;
 	color:white;
-	display: inline-flex;
+	display: float;
 	position: fixed; /* keeps top bar at top of page when scrolling. */
 	z-index: 10;	/* set to show as top element*/
 }
@@ -48,7 +48,7 @@ margin: 5px;
 
 	margin-top:100px;
 	display:inline-block;
-	background-color:#b73333;
+	background-color:#efa6a2;
 	width: 30%;
 	min-width: 400px;
 	padding:0 20px 0 20px;
@@ -75,12 +75,12 @@ margin: 5px;
 	border-radius:20px;
 	background-color: white;
 	width: 30%;
-	padding: 20px 0 30px 0;
+	padding: 20px 25px 30px 0;
 	margin: auto;
 	margin-top: 20px;
 	text-align:center;
 	min-width: 500px;
-
+	box-shadow: 7px 7px 10px #aaaaaa;
 }
 
 
@@ -103,6 +103,14 @@ margin: 5px;
 	font-size: 25px;
 	color: white;
 	margin: 20px 0 20px 5px;
+	float:left;
+}
+.logout
+{
+	float:right;
+	color:white;
+	margin-right: 20px;
+	font-size:20px;
 }
 
 .container
