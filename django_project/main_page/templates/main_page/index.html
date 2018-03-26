@@ -1,3 +1,35 @@
-{% for page in pages %}
-    <a href="{{ page.url }}">{{ page.name }}</a>
-{% endfor %}
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<div class = "top_bar">
+    <p class = "logo"> <i class="fas fa-home"></i> &nbsp Main Menu</p>
+
+</div>
+
+
+
+
+
+<div class = "titlecontainer">
+    <p class= "largelogo"> Pocket <br>Pastors </p>
+    <img id="pastorimage" src="{% static "img/pocketpastor.png" %}" width="220px" height="220px">
+</div>
+
+
+ <div class = "buttoncontainer">
+  <ul>
+    {% for page in pages %}
+        <li>
+            <a href="{{ page.url }}">
+                <button class="menubuttons">
+                    <i class="fas {{ page.css_class }}"></i>
+                    {{ page.name }}
+                </button>
+            </a>
+    {% endfor %}
+  </ul>
+ </div>
+
+{% endblock %}
