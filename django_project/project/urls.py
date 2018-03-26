@@ -18,13 +18,13 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', include('login.urls')),
-    path('accountability/', include('accountability.urls')),
-    path('encouragement/', include('encouragement.urls')),
-    path('', include('main_page.urls')),
-    path('questionnaire/', include('questionnaire.urls')),
-    path('settings/', include('settings.urls')),
-    path('small_group/', include('small_group.urls')),
-    path('ways_to_serve/', include('ways_to_serve.urls')),
+    path('login/', include('login.urls'), name='login'),
+    path('accountability/', include('accountability.urls'), name='accountability'),
+    path('encouragement/', include('encouragement.urls'), name='encouragement'),
+    path('', include('main_page.urls'), name='main_page'),
+    path('questionnaire/', include('questionnaire.urls'), name='questionnaire'),
+    path('settings/', include('settings.urls'), name='settings'),
+    path('small_group/', include('small_group.urls'), name='small_group'),
+    path('ways_to_serve/', include('ways_to_serve.urls'), name='ways_to_serve'),
 ]
 
