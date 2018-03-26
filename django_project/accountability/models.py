@@ -13,8 +13,14 @@ class ChurchCheckIn(models.Model):
     date = models.DateTimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return str(self.user) + ' ' + str(self.check_in)
+
 
 class BibleReading(models.Model):
     time_read = models.IntegerField()       # in minutes
     date = models.DateField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.user) + " " + str(self.time_read) + " hours"
