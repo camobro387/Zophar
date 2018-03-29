@@ -1,23 +1,23 @@
-from django.shortcuts import render, redirect, reverse
-from django.http import HttpResponse
-from django.views import View
-from django.contrib.auth.mixins import LoginRequiredMixin
-
-from login.models import Profile
-from .models import ChurchCheckIn, BibleReading
-from .forms import SliderForm, DropdownForm
-
 import datetime
 
-# Create your views here.
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, reverse
+from django.views import View
+
+from login.models import Profile
+from .forms import SliderForm, DropdownForm
+from .models import ChurchCheckIn, BibleReading
 
 
 class Main(LoginRequiredMixin, View):
     def get(self, request):
-        hours = ReadingData(request.user).time_read_in_week()
-        self.get_data_for_user(request.user)
+        self.user = request.user
 
-        church_data = ChurchData(request.user)
+        hours = ReadingData(self.user).time_read_in_week()
+        self.get_data_for_user()
+
+        church_data = ChurchData(self.user)
         last_church_date = church_data.last_check_in()
         last_church_location = None
 
@@ -31,7 +31,7 @@ class Main(LoginRequiredMixin, View):
             'dropdown_form': dropdown_form
         }
 
-        context.update(self.get_data_for_user(request.user))
+        context.update(self.get_data_for_user())
         print(context)
         return HttpResponse(render(
             request,
@@ -39,9 +39,9 @@ class Main(LoginRequiredMixin, View):
             context=context)
         )
 
-    def get_data_for_user(self, user):
+    def get_data_for_user(self):
         # User data from profile
-        user_data = Profile.objects.filter(user=user)[0]
+        user_data = Profile.objects.filter(user=self.user)[0]
 
         # Last check in
 
@@ -51,7 +51,10 @@ class Main(LoginRequiredMixin, View):
                 }
 
 
-class ChurchData():
+class ChurchData:
+    """
+    Used to query the db and format data
+    """
 
     def __init__(self, user):
         self.user = user
@@ -65,7 +68,8 @@ class ChurchData():
             date = str(d.year) + ' ' + str(d.month) + ' ' + str(d.day)
             return date
 
-class ReadingData():
+
+class ReadingData:
 
     def __init__(self, user):
         self.user = user
@@ -73,12 +77,13 @@ class ReadingData():
     def time_read_in_week(self):
         """
         Searches the database for how much time the user has spent reading the bible this week.
-        :return:
+
+        :return: total number of hours read in the last week.
         """
         query = BibleReading.objects.filter(
             user=self.user
         ).filter(
-            date__range=self.date_list()
+            date__range=self.date_range()
         )
         total_hours = 0
         for reading in query:
@@ -86,14 +91,19 @@ class ReadingData():
 
         return total_hours
 
-    def date_list(self):
-        '''
+    @staticmethod
+    def date_range():
+        """
         Makes list of days since last Sunday.
-        '''
+
+        Will not currently work if week split between this month and end of last month.
+
+        :return: a list with two entries. The first is the date of the last Sunday, the first is today's date.
+        """
         today = datetime.datetime.now()
         day = datetime.datetime.weekday(today)
         today = datetime.date(today.year, today.month, today.day)
-        last_sunday = today.day - day - 1
+        last_sunday = today.day - day - 1  # Adjust by -1 because datetime.weekday uses Monday as index 0.
         last_sunday = datetime.date(today.year, today.month, last_sunday)
         return [last_sunday, today]
 
@@ -104,32 +114,39 @@ class Church(LoginRequiredMixin, View):
         self.make_check_in(at_church, request.user)
         return redirect('/accountability')
 
-    def make_check_in(self, at_church, user):
-        if at_church == None: bool = False
-        else: bool = True
+    @staticmethod
+    def make_check_in(at_church, user):
+        if at_church is None:
+            church_b = False
+        else:
+            church_b = True
         date = datetime.datetime.now()
         ChurchCheckIn.objects.create(
-            check_in=bool,
+            check_in=church_b,
             date=date,
             user=user)
 
 
 class Reading(LoginRequiredMixin, View):
     def post(self, request):
+        self.user = request.user
+
         reading = request.POST.get('dropdown')
         entry = BibleReading(
             time_read=reading,
             date=datetime.date.today(),
-            user=request.user
+            user=self.user
         )
         entry.save()
         return redirect(reverse('accountability'))
 
-    def make_check_in(self, reading, user):
-        if reading == None: bool = False
-        else: bool = True
+    def make_check_in(self, reading):
+        if reading is None:
+            read_b = False
+        else:
+            read_b = True
         date = datetime.datetime.now()
         ChurchCheckIn.objects.create(
-            reading=bool,
+            reading=read_b,
             date=date,
-            user=user)
+            user=self.user)
